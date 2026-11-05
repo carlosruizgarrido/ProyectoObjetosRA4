@@ -1,14 +1,13 @@
-# Inventario de productos con TypeScript
+# Proyecto Objetos RA4: Inventario de productos con TypeScript
 
 Proyecto de la unidad 3 (Objetos) del módulo **Desarrollo Web en Entorno Cliente** de 2º DAW.
 
-Programa en TypeScript que modela un inventario de productos mediante objetos: Lista los artículos con sus unidades, calcula el valor total del inventario y aplica descuentos a los precios.
-
 ## Qué hace
 
-- Muestra el inventario con el nombre y las unidades de cada producto.
+- Crea productos de distintos tipos: Genéricos, electrodomésticos y equipos informáticos.
+- Los agrega a un inventario y muestra su contenido con las unidades de cada uno.
 - Calcula el valor total del inventario.
-- Aplica descuentos y muestra el precio resultante de cada producto afectado.
+- Aplica descuentos porcentuales a grupos de productos y muestra el precio resultante.
 
 ### Ejemplo de salida
 
@@ -27,7 +26,26 @@ Valor total del inventario: $11900.00
 --------------------------------------------------
 Precio de Iphone 18 después del descuento: $1530.00
 Precio de Lavadora después del descuento: $640.00
-...
+Precio de Frigorífico después del descuento: $840.00
+Precio de Microondas después del descuento: $240.00
+Precio de Portátil después del descuento: $1350.00
+Precio de PC de sobremesa después del descuento: $1800.00
+Precio de Tablet después del descuento: $510.00
+```
+
+## Estructura del proyecto
+
+```
+.
+├── Main.ts               # Punto de entrada: crea productos, inventario y aplica descuentos
+├── Producto.ts           # Clase base: nombre, precio y marca
+├── Electrodomestico.ts   # Producto con clasificación energética y garantía
+├── EquipoInformatico.ts  # Electrodoméstico con memoria RAM y procesador
+├── Inventario.ts         # Gestión del inventario: agregar, mostrar y calcular el valor total
+├── Dockerfile            # Imagen con Node, TypeScript y tsx
+├── docker-compose.yml    # Ejecución con un solo comando
+├── .dockerignore         # Archivos excluidos de la imagen
+└── README.md
 ```
 
 ## Tecnologías
@@ -51,7 +69,7 @@ cd ProyectoObjetosRA4
 docker compose up --build
 ```
 
-Todo (Node, TypeScript y tsx) se instala dentro del contenedor. Al terminar, el contenedor se detiene solo porque el programa acaba su ejecución.
+Node, TypeScript y tsx se instalan dentro del contenedor, así que no hace falta instalar nada en tu máquina. El contenedor se detiene solo al terminar, porque el programa acaba su ejecución.
 
 Para volver a lanzarlo sin reconstruir la imagen:
 
@@ -77,19 +95,6 @@ npx tsx ./Main.ts
 
 `npx` descarga `tsx` la primera vez que se ejecuta.
 
-## Estructura del proyecto
-
-```
-.
-├── Main.ts              # Punto de entrada del programa
-├── Dockerfile           # Imagen con Node, TypeScript y tsx
-├── docker-compose.yml   # Orquestación para ejecutarlo con un solo comando
-├── .dockerignore        # Archivos excluidos de la imagen
-└── README.md
-```
-
-> Si el proyecto tiene más archivos `.ts` (clases, interfaces...), se importan desde `Main.ts`.
-
 ## Solución de problemas
 
 - **`docker: command not found` o error de conexión con el daemon**: Docker Desktop no está instalado o no está abierto.
@@ -98,4 +103,4 @@ npx tsx ./Main.ts
 
 ## Autor
 
-Carlos Manuel Ruiz Garrido — 2º DAW
+Carlos Manuel Ruiz Garrido — 2º DAW.
