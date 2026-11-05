@@ -19,37 +19,48 @@ export default class Electrodomestico extends Producto {
     }
 
     public setConsumoEnergetico(ce: string): void {
-        /* Manera fea:
-        ce.toLowerCase();
-        if (ce == "a" || ce == "b" || ce == "c" || ce == "d" || ce == "e" || ce == "f") {
-            this.consumoEnergetico = ce;
+        const consumoValidado = this.consumoEnergetico.toLowerCase();
+        if (["a++", "a+", "b", "c"].includes(consumoValidado)) {
+            this.consumoEnergetico = consumoValidado;
         } else {
-            this.consumoEnergetico = "NA";
+            throw new Error("El consumo energético debe ser A++, A+, B o C");
         }
-        */
-
-        const letras: string[] = ["a++", "a+", "b", "c"];
-        const consumo = ce.toLowerCase();
-        this.consumoEnergetico = letras.includes(consumo) ? consumo : "NA";
     }
 
     public setGarantia(g: number): void {
-        if (g >= 0 && Number.isInteger(g)) {
-            this.garantia = g;
-        } else {
-            this.garantia = 0;
+        if (!Number.isInteger(g) || g < 0) {
+            throw new Error("La garantía debe ser un número entero igual o superior a 0.");
         }
+
+        this.garantia = g;
     }
 
     public override aplicarDescuento(a: Producto[], porcentaje: number): void {
-        if (porcentaje > 0 && porcentaje <= 100) {
-            a.forEach(p => {
-                if (p instanceof Electrodomestico) {
-                    const descuentoAdicional = p.getPrecio() > 1000 ? 10 : 0;
-                    const nuevoPrecio = p.getPrecio() - p.getPrecio() / 100 * (porcentaje + descuentoAdicional);
-                    p.setPrecio(nuevoPrecio);
+        if (!Number.isFinite(porcentaje) || porcentaje <= 0 || porcentaje > 100) {
+            throw new Error("El descuento debe estar entre 0 y 100.");
+        }
+        
+        a.forEach(p => {
+            if (p instanceof Electrodomestico) {
+                let descuento = porcentaje;
+
+                if (p.getPrecio() > 100) {
+                    descuento += 10;
                 }
-            });
+
+                descuento = Math.min(descuento, 100);
+
+                const nuevoPrecio = p.getPrecio() - (p.getPrecio() * descuento / 100);
+                p.setPrecio(nuevoPrecio);
+            }
+        });
+    }
+
+    public override informacion(): string {
+        if (this.getGarantia() === 1) {
+            return `${super.informacion()}, Consumo energético: ${this.consumoEnergetico}, Garantía: ${this.garantia} año`;
+        } else {
+            return `${super.informacion()}, Consumo energético: ${this.consumoEnergetico}, Garantía: ${this.garantia} años`;
         }
     }
 }

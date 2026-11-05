@@ -1,12 +1,13 @@
 export default class Producto {
-    private nombre: string;
-    private precio!: number; // El ! se utiliza para decirle que va a ser utilizado, evita un error
-    private marca: string;
+    private nombre!: string;
+    private precio!: number; 
+    private marca!: string;
+    // El ! se utiliza para decirle que va a ser utilizado, evita un error
     
     constructor(nombre: string, precio: number, marca: string) {
-        this.nombre = nombre;
+        this.setNombre(nombre);
         this.setPrecio(precio);
-        this.marca = marca;
+        this.setMarca(marca);
     }
 
     public getNombre(): string {
@@ -21,20 +22,29 @@ export default class Producto {
         return this.marca;
     }
 
+    public informacion(): string {
+        return `Nombre: ${this.nombre} | Precio: ${this.precio}€ | Marca: ${this.marca}`;
+    }
+
     public setNombre(n: string): void {
-        this.nombre = n;
+        if (n.trim() === "") {
+            throw new Error("El nombre no puede estar vacío.");
+        }
+        this.nombre = n.trim();
     }
 
     public setPrecio(p: number): void {
-        if (p >= 0) {
-            this.precio = p;
-        } else {
-            this.precio = 0;
+        if (Number.isFinite(p) && p < 0) {
+            throw new Error("El precio debe ser un número válido y no puede ser negativo.");
         }
+        this.precio = p;
     }
 
     public setMarca(m: string): void {
-        this.marca = m;
+        if (m.trim() === "") {
+            throw new Error("La marca no puede esta vacía.");
+        }
+        this.marca = m.trim();
     }
 
     public static precioPromedio(a: Producto[]): number {
@@ -44,15 +54,18 @@ export default class Producto {
     }
 
     public static contarPorMarca(a: Producto[], marca: string): number {
-        return a.filter(p => p.getMarca() === marca).length;
+        return a.filter(
+            p => p.getMarca().toLowerCase() === marca.toLowerCase()
+        ).length;
     }
 
     public aplicarDescuento(a: Producto[], porcentaje: number): void {
-        if (porcentaje > 0 && porcentaje <= 100) {
-            a.forEach(p => {
-                const nuevoPrecio = p.getPrecio() - p.getPrecio() / 100 * porcentaje;
-                p.setPrecio(nuevoPrecio);
-            });
+        if (!Number.isFinite(porcentaje) || porcentaje <= 0 || porcentaje > 100) {
+            throw new Error("El descuento debe estar entre 0 y 100.");
         }
+        a.forEach(p => {
+            const nuevoPrecio = p.getPrecio() - p.getPrecio() / 100 * porcentaje; // Revisar 
+            p.setPrecio(nuevoPrecio);
+        });
     }
 }
