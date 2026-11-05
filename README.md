@@ -1,6 +1,6 @@
 # Inventario de productos con TypeScript
 
-Proyecto de la unidad 3 (Objetos) del módulo **Desarrollo Web en Entorno Cliente** de 2º DAW (IES Camas).
+Proyecto de la unidad 3 (Objetos) del módulo **Desarrollo Web en Entorno Cliente** de 2º DAW.
 
 Programa en TypeScript que modela un inventario de productos mediante objetos: Lista los artículos con sus unidades, calcula el valor total del inventario y aplica descuentos a los precios.
 
