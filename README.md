@@ -2,7 +2,7 @@
 
 Proyecto de la unidad 3 (Objetos) del módulo **Desarrollo Web en Entorno Cliente** de 2º DAW (IES Camas).
 
-Programa en TypeScript que modela un inventario de productos mediante objetos: lista los artículos con sus unidades, calcula el valor total del inventario y aplica descuentos a los precios.
+Programa en TypeScript que modela un inventario de productos mediante objetos: Lista los artículos con sus unidades, calcula el valor total del inventario y aplica descuentos a los precios.
 
 ## Qué hace
 
@@ -46,8 +46,8 @@ Hay dos formas. La primera no requiere instalar nada más que Docker.
 Requisitos: [Docker](https://www.docker.com/products/docker-desktop/) instalado y en marcha.
 
 ```bash
-git clone <URL-DEL-REPOSITORIO>
-cd <NOMBRE-DEL-REPOSITORIO>
+git clone https://github.com/carlosruizgarrido/ProyectoObjetosRA4
+cd ProyectoObjetosRA4
 docker compose up --build
 ```
 
@@ -70,8 +70,8 @@ docker compose down
 Requisitos: [Node.js](https://nodejs.org/) 18 o superior.
 
 ```bash
-git clone <URL-DEL-REPOSITORIO>
-cd <NOMBRE-DEL-REPOSITORIO>
+git clone https://github.com/carlosruizgarrido/ProyectoObjetosRA4
+cd ProyectoObjetosRA4
 npx tsx ./Main.ts
 ```
 
@@ -98,4 +98,4 @@ npx tsx ./Main.ts
 
 ## Autor
 
-Carlos — 2º DAW, IES Camas.
+Carlos Manuel Ruiz Garrido — 2º DAW
