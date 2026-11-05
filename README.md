@@ -7,7 +7,7 @@ Proyecto de la unidad 3 (Objetos) del módulo **Desarrollo Web en Entorno Client
 - Crea productos de distintos tipos: Genéricos, electrodomésticos y equipos informáticos.
 - Los agrega a un inventario y muestra su contenido con las unidades de cada uno.
 - Calcula el valor total del inventario.
-- Aplica descuentos porcentuales a grupos de productos y muestra el precio resultante.
+- Aplica descuentos porcentuales a grupos de productos y muestra el precio resultante. Cada clase redefine el descuento: los electrodomésticos de más de 1000 reciben un 10% extra y los equipos informáticos de Apple un 5% extra.
 
 ### Ejemplo de salida
 
@@ -40,8 +40,8 @@ Precio de Tablet después del descuento: $510.00
 ├── Main.ts               # Punto de entrada: crea productos, inventario y aplica descuentos
 ├── Producto.ts           # Clase base: nombre, precio y marca
 ├── Electrodomestico.ts   # Producto con clasificación energética y garantía
-├── EquipoInformatico.ts  # Electrodoméstico con memoria RAM y procesador
-├── Inventario.ts         # Gestión del inventario: agregar, mostrar y calcular el valor total
+├── EquipoInformatico.ts  # Producto con memoria RAM y procesador
+├── Inventario.ts         # Gestión del inventario: agregar, eliminar, mostrar y calcular el valor total
 ├── Dockerfile            # Imagen con Node, TypeScript y tsx
 ├── docker-compose.yml    # Ejecución con un solo comando
 ├── .dockerignore         # Archivos excluidos de la imagen
