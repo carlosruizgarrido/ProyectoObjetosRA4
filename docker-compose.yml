@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    # Monta tu código para que los cambios se vean sin reconstruir la imagen
+    volumes:
+      - .:/app
+    # Para programas interactivos (readline, prompts...)
+    stdin_open: true
+    tty: true
