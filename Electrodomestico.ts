@@ -19,7 +19,7 @@ export default class Electrodomestico extends Producto {
     }
 
     public setConsumoEnergetico(ce: string): void {
-        const consumoValidado = this.consumoEnergetico.toLowerCase();
+        const consumoValidado = ce.toLowerCase();
         if (["a++", "a+", "b", "c"].includes(consumoValidado)) {
             this.consumoEnergetico = consumoValidado;
         } else {
